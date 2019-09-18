@@ -1,4 +1,5 @@
-## Welcome to My R Projects
+## Kanalıma Hoş Geldiniz !!!
+
 
 You can use the [editor on GitHub](https://github.com/pjournal/mef03-gokhankoca/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
 
