@@ -1,9 +1,11 @@
 theme: jekyll-theme-architect
 title: Gökhan KOCA Progress Journal
 description: BDA 503 Fall 2019 - Mef University
-navbar:
-  left:
-    - text: "Home"
-      href: index.html
-    - text: "About"
-      href: about.html
+<div id="home">
+  <h1>Blog Posts</h1>
+  <ul class="posts">
+    {% for post in site.posts %}
+      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
