@@ -3,7 +3,6 @@ title: Gökhan KOCA Progress Journal
 description: BDA 503 Fall 2019 - Mef University
 name: "Gökhan KOCA Progress Journal"
 navbar:
-  title: "Gökhan KOCA Progress Journal"
   left:
     - text: "Home"
       href: index.html
