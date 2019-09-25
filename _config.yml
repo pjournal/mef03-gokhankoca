@@ -1,7 +1,6 @@
 theme: jekyll-theme-architect
 title: Gökhan KOCA Progress Journal
 description: BDA 503 Fall 2019 - Mef University
-name: "Gökhan KOCA Progress Journal"
 navbar:
   left:
     - text: "Home"
