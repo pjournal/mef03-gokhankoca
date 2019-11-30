@@ -1,0 +1,49 @@
+---
+title: "R Notebook"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r}
+library(tidyverse)
+
+dt<- load('C:/Users/win7pro/Desktop/BDA CODES/BDA503 - R/atp_tennis_data_2017.Rdata')
+```
+
+```{r}
+#Rank countries (flag cıdes) by the number of singles champions
+
+play_rank <- right_join(player_df, tourney_df, by = c('player_id'='singles_winner_player_id'))
+
+play_rank %>% group_by(flag_code) %>% count(sort = TRUE) 
+
+```
+
+```{r}
+#Rank countries which did not get any singles championships by the games won when they win the match
+
+nonchamp_players <- player_df %>% select(player_id,flag_code) %>% anti_join(.,play_rank, by="player_id")
+
+nonchamp_players %>% left_join(.,score_df, by=c("player_id"="winner_player_id")) %>% group_by(flag_code) %>% summarise(total_won=sum(winner_games_won,na.rm = TRUE)) %>% arrange(desc(total_won))
+
+```
+
+```{r}
+#Which countries won the maximum games by tourney conditions?
+
+play_rank <- right_join(player_df, tourney_df, by = c('player_id'='singles_winner_player_id'))
+
+play_rank %>% group_by(flag_code,tourney_conditions) %>% count(sort=TRUE)
+
+```
+
+```{r}
+#Which player won the maximum point at 2017
+
+first_week <- inner_join(rank_df,player_df) %>% filter(week_title=="2017-01-02")
+last_week <- inner_join(rank_df,player_df) %>% filter(week_title=="2017-11-20")
+
+inner_join(first_week,last_week,by="player_id",suffix=c("_first","_last")) %>% transmute(first_name_first,last_name_first,flag_code_first,tourneys_played_first,point=ranking_points_last - ranking_points_first) %>% arrange(desc(point))
+```
+
